@@ -38,7 +38,7 @@ $(function(){
     $('.modal').hide().remove();
   });
 
-  $('#get-data').click(function () {
+  function search(queues) {
     var data = {
       queues: 'search',
       type: $('.nav-tabs li.active a').attr('href').replace('#',':')
@@ -48,6 +48,17 @@ $(function(){
       var output = Mustache.render(template, data);
       $('#dj-counts-view').html(output);
     });
+  }
+
+  $('#get-data').click(function(){
+    var queues = $(this).siblings()[0].value;
+    search(queues);
+  });
+  $('.search-query').keydown(function(e) {
+    if (e.keyCode == 13) {
+      var queues = $('.get-data').siblings()[0].value;
+      search(queues);
+    }
   });
 
   // (function refreshCount() {
