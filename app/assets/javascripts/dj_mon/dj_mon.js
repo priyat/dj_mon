@@ -43,7 +43,7 @@ $(function(){
       queues: 'search',
       type: $('.nav-tabs li.active a').attr('href').replace('#',':')
     };
-    $.getJSON(search_dj_reports_url, data, function(data, status, xhr) {
+    $.getJSON('/dj_mon/dj_reports/search', data, function(data, status, xhr) {
       var template = $('#dj_counts_template').html();
       var output = Mustache.render(template, data);
       $('#dj-counts-view').html(output);
