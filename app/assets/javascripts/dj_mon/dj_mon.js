@@ -40,7 +40,7 @@ $(function(){
 
   function search(queues) {
     var data = {
-      queues: 'search',
+      queues: queues,
       type: $('.nav-tabs li.active a').attr('href').replace('#',':')
     };
     $.getJSON('/dj_mon/dj_reports/search', data, function(data, status, xhr) {
