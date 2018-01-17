@@ -1,6 +1,7 @@
 module DjMon
   class DjReport
     TIME_FORMAT = "%b %d %H:%M:%S"
+    include Mongoid::Tags
 
     attr_accessor :delayed_job
 
@@ -47,6 +48,10 @@ module DjMon
 
       def queued_reports
         reports_for DjMon::Backend.limited.queued
+      end
+
+      def search_reports(type, queues)
+        reports_for DjMon::Backend.limited.search(type, queues)
       end
 
       def dj_counts

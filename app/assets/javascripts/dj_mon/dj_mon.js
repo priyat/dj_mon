@@ -38,14 +38,25 @@ $(function(){
     $('.modal').hide().remove();
   });
 
-  (function refreshCount() {
-    $.getJSON(dj_counts_dj_reports_url).success(function(data){
+  $('#get-data').click(function () {
+    var data = {
+      queues: 'search',
+      type: $('.nav-tabs li.active a').attr('href').replace('#',':')
+    };
+    $.getJSON(search_dj_reports_url, data, function(data, status, xhr) {
       var template = $('#dj_counts_template').html();
       var output = Mustache.render(template, data);
       $('#dj-counts-view').html(output);
-      setTimeout(refreshCount, 5000);
     });
-  })();
+  });
+
+  // (function refreshCount() {
+  //   $.getJSON(dj_counts_dj_reports_url).success(function(data){
+  //     var template = $('#dj_counts_template').html();
+  //     var output = Mustache.render(template, data);
+  //     $('#dj-counts-view').html(output);
+  //     setTimeout(refreshCount, 5000);
+  //   });
+  // })();
 
 })
-

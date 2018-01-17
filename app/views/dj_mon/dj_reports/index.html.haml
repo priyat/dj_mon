@@ -2,7 +2,8 @@
   .lead
     Delayed Jobs
   .pull-right
-    = link_to "Get DJ Mon for iPhone", "http://itunes.apple.com/app/dj-mon/id552732872", :target => '_blank', :class => 'btn btn-mini'
+    = text_field_tag :name, nil, :class => "search-query span3", :placeholder => "Search"
+    = submit_tag 'Search', :class => 'btn btn-info btn-mini get-data'
 
 %ul.nav.nav-tabs
   %li.active
@@ -62,7 +63,7 @@
         %td.date
           {{#failed}}
           {{failed_at}}
-          
+
           = form_tag CGI.unescape(retry_dj_report_url(:id => "{{id}}")), :method => :post, :class => 'form-inline' do
             = submit_tag 'Retry', :class => 'btn btn-info btn-mini'
 

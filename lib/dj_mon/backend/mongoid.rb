@@ -31,6 +31,25 @@ module DjMon
           dj = Delayed::Job.find(id)
           dj.update_attribute :failed_at, nil if dj
         end
+
+        def search(type, queues)
+          rel = Delayed::Job
+
+          rel =
+            case type
+            when :active
+              rel.where(:failed_at => nil, :locked_by.ne => nil)
+            when :failed
+              rel.where(:failed_at.ne => nil)
+            when :queued
+              rel.where(:failed_at => nil, :locked_by => nil)
+            else
+              rel.all
+            end
+
+          rel = rel.where(:queue => queues) unless queues.empty?
+          rel
+        end
       end
     end
   end

@@ -33,6 +33,10 @@ module DjMon
       respond_with DjReport.settings
     end
 
+    def search
+      respond_with DjReport.search params[:type], params[:queues]
+    end
+
     def retry
       DjMon::Backend.retry params[:id]
       respond_to do |format|
