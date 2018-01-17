@@ -1,7 +1,6 @@
 module DjMon
   class DjReport
     TIME_FORMAT = "%b %d %H:%M:%S"
-    include Mongoid::Tags
 
     attr_accessor :delayed_job
 
