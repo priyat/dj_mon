@@ -34,7 +34,7 @@ module DjMon
     end
 
     def search
-      respond_with DjReport.search params[:type], params[:queues]
+      respond_with DjReport.search_reports params[:type], params[:queues]
     end
 
     def retry
