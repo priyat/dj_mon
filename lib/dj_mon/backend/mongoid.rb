@@ -37,11 +37,11 @@ module DjMon
 
           rel =
             case type
-            when :active
+            when 'active'
               rel.where(:failed_at => nil, :locked_by.ne => nil)
-            when :failed
+            when 'failed'
               rel.where(:failed_at.ne => nil)
-            when :queued
+            when 'queued'
               rel.where(:failed_at => nil, :locked_by => nil)
             else
               rel.all
